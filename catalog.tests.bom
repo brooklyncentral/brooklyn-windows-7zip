@@ -1,0 +1,26 @@
+brooklyn.catalog:
+  items:
+  - "https://raw.githubusercontent.com/brooklyncentral/common-catalog-utils/master/common-tests/src/main/resources/commontests/common.tests.bom"
+  - id: windows-7zip-tests
+    itemType: entity
+    name: Windows 7zip tests
+    license_code: Apache-2.0
+    license_url: http://www.apache.org/licenses/LICENSE-2.0.txt
+    item:
+      services:
+        - type: windows-7zip
+          id: 7zip
+        - type: test-case
+          name: Tests
+          brooklyn.config:
+            targetId: 7zip
+            timeout: 1h
+          brooklyn.children:
+            - type: assert-up-and-running-initial
+              name: "Node up and running"
+            - type: org.apache.brooklyn.test.framework.TestWinrmCommand
+              name: "[TODO] Has 7zip"
+              brooklyn.config:
+                command: |
+                  dir c:\"Program Files\7-zip\7z.exe"
+ 

@@ -1,0 +1,39 @@
+###
+ # TODO: install7zip.ps1 should come from "classpath://scripts/install7zip.ps1, which would work if adding
+ #       this blueprint via `br catalog add ./`. However, if doing `br catalog add ./catalog.bom` then we
+ #       we need to use the URL (as is done below).
+ ##
+
+brooklyn.catalog:
+  id: windows-7zip
+  version: "1.0.0-SNAPSHOT"
+  itemType: entity
+  description: A Windows Server, with 7Zip installed
+  displayName: 7Zip
+  iconUrl: http://www.7-zip.org/7ziplogo.png
+
+  item:
+    services:
+    - type: brooklyn.entity.basic.VanillaWindowsProcess
+      name: 7Zip
+      brooklyn.config:
+        onbox.base.dir.skipResolution: true
+        templates.install:
+          "https://raw.githubusercontent.com/apache/brooklyn-server/master/launcher/src/test/resources/install7zip.ps1": "C:\\install7zip.ps1"
+        install.command: |
+          powershell -NonInteractive -NoProfile -Command "C:\\install7zip.ps1"
+        customize.command: echo true
+        launch.command: echo true
+        stop.command: echo true
+        checkRunning.command: echo true
+        installer.download.url: http://www.7-zip.org/a/7z938-x64.msi
+
+        provisioning.properties:
+          osFamilyOverride: windows
+          required.ports: 1433
+          templateOptions:
+            mapNewVolumeToDeviceName: ["/dev/sda1", 50, true]
+
+      brooklyn.policies:
+       - type: brooklyn.policy.os.AdvertiseWinrmLoginPolicy
+
