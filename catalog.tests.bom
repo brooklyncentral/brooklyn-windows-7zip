@@ -2,7 +2,7 @@ brooklyn.catalog:
   items:
   - "https://raw.githubusercontent.com/brooklyncentral/common-catalog-utils/master/common-tests/src/main/resources/commontests/common.tests.bom"
   - id: windows-7zip-tests
-    itemType: entity
+    itemType: template
     name: Windows 7zip tests
     license_code: Apache-2.0
     license_url: http://www.apache.org/licenses/LICENSE-2.0.txt
