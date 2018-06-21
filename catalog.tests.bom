@@ -1,4 +1,5 @@
 brooklyn.catalog:
+  version: "1.0.0-SNAPSHOT" # BROOKLYN_7ZIP_VERSION
   items:
   - "https://raw.githubusercontent.com/brooklyncentral/common-catalog-utils/master/common-tests/src/main/resources/commontests/common.tests.bom"
   - id: windows-7zip-tests
