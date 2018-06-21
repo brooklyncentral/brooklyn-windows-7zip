@@ -6,7 +6,7 @@
 
 brooklyn.catalog:
   id: windows-7zip
-  version: "1.0.0-SNAPSHOT"
+  version: "1.0.0-SNAPSHOT" # BROOKLYN_7ZIP_VERSION
   itemType: entity
   description: A Windows Server, with 7Zip installed
   displayName: 7Zip
